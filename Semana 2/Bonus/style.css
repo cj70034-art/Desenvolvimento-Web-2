@@ -1,0 +1,261 @@
+:root {
+  --fundo: #0f0f1a;
+  --cartao: #17172b;
+  --borda: #2a2a45;
+  --texto: #e6e6f0;
+  --texto-suave: #9a9ab5;
+  --destaque: #22aa66;
+  --destaque-hover: #2fbf78;
+  --erro: #ff6b81;
+  --sucesso: #4ade80;
+  --alerta: #fbbf24;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 12px;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.app { max-width: 860px; margin: 0 auto; }
+.topo { margin-bottom: 20px; }
+h1 { margin: 0; font-size: 1.8rem; }
+.subtitulo { margin: 4px 0 0; color: var(--texto-suave); }
+h2 { margin: 0 0 14px; font-size: 1.15rem; }
+h2 small { font-weight: normal; color: var(--texto-suave); font-size: 0.85rem; }
+
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Formulário */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+label { font-size: 0.9rem; color: var(--texto-suave); }
+
+input, select {
+  width: 100%;
+  height: 44px;
+  padding: 11px 12px;
+  background: var(--fundo);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239a9ab5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--destaque);
+  outline-offset: 1px;
+}
+
+.botao {
+  width: 100%;
+  padding: 12px;
+  background: var(--destaque);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.botao:hover { background: var(--destaque-hover); }
+
+/* Mensagens */
+.mensagem { min-height: 24px; margin: 12px 0 0; font-size: 0.95rem; }
+.mensagem.erro { color: var(--erro); }
+.mensagem.sucesso { color: var(--sucesso); }
+
+/* Resumo */
+.total-geral {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--borda);
+  font-size: 1.1rem;
+}
+.total-geral strong { font-size: 1.6rem; }
+.total-geral.meta-batida strong { color: var(--sucesso); }
+
+.total-itens {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--borda);
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+.total-itens strong { color: var(--texto); }
+
+.totais { list-style: none; margin: 0; padding: 0; }
+.totais li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--borda);
+}
+.totais li:last-child { border-bottom: 0; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #333355;
+}
+.badge.eletronicos { background: #2a3b6b; color: #c4d6ff; }
+.badge.roupas      { background: #6b2a55; color: #ffc4e8; }
+.badge.alimentos   { background: #2a6b4a; color: #c4ffe0; }
+.badge.livros      { background: #5a5a2a; color: #fff3c4; }
+.badge.outros      { background: #444444; color: #e0e0e0; }
+
+/* Tabela */
+.tabela-area { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+th, td {
+  padding: 10px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--borda);
+}
+th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-suave);
+}
+.direita { text-align: right; }
+td.qtd, td.preco, td.custo, td.lucro {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Coluna de lucro por linha */
+td.lucro { font-weight: 600; color: var(--sucesso); }
+td.lucro.negativo { color: var(--erro); }
+
+.remover {
+  background: transparent;
+  color: var(--erro);
+  border: 1px solid var(--erro);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.remover:hover { background: var(--erro); color: var(--fundo); }
+
+.vazio { color: var(--texto-suave); margin: 0 0 8px; }
+.oculto { display: none; }
+.so-leitor { position: absolute; left: -9999px; }
+
+.botao-limpar {
+  margin-top: 14px;
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--erro);
+  border: 1px solid var(--erro);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.botao-limpar:hover { background: var(--erro); color: var(--fundo); }
+
+/* Bônus */
+.bonus { border-style: dashed; }
+.aviso {
+  min-height: 22px;
+  margin: -4px 0 14px;
+  font-size: 0.92rem;
+  color: var(--alerta);
+}
+
+/* NOVO: análise de lucro */
+.titulo-analise {
+  margin: 20px 0 12px;
+  font-size: 1.05rem;
+  color: var(--texto-suave);
+  border-top: 1px solid var(--borda);
+  padding-top: 16px;
+}
+
+.analise-lucro {
+  margin-top: 4px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+}
+
+.linha-analise {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 6px 0;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.linha-analise strong { font-size: 1.05rem; }
+
+.linha-destaque {
+  margin: 10px 0;
+  padding: 8px 0;
+  border-top: 1px dashed var(--borda);
+  border-bottom: 1px dashed var(--borda);
+  font-weight: 600;
+}
+
+/* Cores dinâmicas aplicadas pelo JS */
+.analise-lucro.positivo strong { color: var(--sucesso); }
+.analise-lucro.negativo strong { color: var(--erro); }
+.analise-lucro.neutro   strong { color: var(--texto-suave); }
+
+/* Telas maiores */
+@media (min-width: 640px) {
+  body { padding: 32px; }
+  .cartao { padding: 20px; }
+  table { font-size: 1rem; }
+  form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 0 14px;
+    align-items: end;
+  }
+  form .botao { grid-column: 1 / -1; }
+}

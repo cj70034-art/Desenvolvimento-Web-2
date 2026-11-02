@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de Vendas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topo">
+        <h1>Controle de Vendas</h1>
+        <p class="subtitulo">
+          Registre suas vendas e acompanhe o faturamento e o lucro.
+        </p>
+      </header>
+
+      <!-- Formulário de cadastro -->
+      <section class="cartao">
+        <h2>Nova venda</h2>
+        <form id="formVenda" novalidate>
+          <div class="campo">
+            <label for="produto">Produto</label>
+            <input
+              type="text"
+              id="produto"
+              name="produto"
+              placeholder="Ex.: Camiseta"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="quantidade">Quantidade</label>
+            <input
+              type="number"
+              id="quantidade"
+              name="quantidade"
+              step="1"
+              min="1"
+              placeholder="Ex.: 3"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="custo">Custo unitário (R$)</label>
+            <input
+              type="number"
+              id="custo"
+              name="custo"
+              step="0.01"
+              placeholder="0.00"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="preco">Preço de venda (R$)</label>
+            <input
+              type="number"
+              id="preco"
+              name="preco"
+              step="0.01"
+              placeholder="0.00"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" name="categoria">
+              <option value="">Selecione...</option>
+              <option value="eletronicos">Eletrônicos</option>
+              <option value="roupas">Roupas</option>
+              <option value="alimentos">Alimentos</option>
+              <option value="livros">Livros</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <button type="submit" class="botao">Registrar venda</button>
+        </form>
+        <p id="mensagem" class="mensagem" role="alert"></p>
+      </section>
+
+      <!-- Resumo -->
+      <section class="cartao">
+        <h2>Resumo</h2>
+        <p class="total-geral">
+          <span>Total vendido (receita)</span>
+          <strong id="totalGeral">R$ 0,00</strong>
+        </p>
+        <p class="total-itens">
+          <span>Itens vendidos</span>
+          <strong id="totalItens">0</strong>
+        </p>
+
+        <ul class="totais">
+          <li>
+            <span class="badge eletronicos">Eletrônicos</span
+            ><span id="total-eletronicos">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge roupas">Roupas</span
+            ><span id="total-roupas">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge alimentos">Alimentos</span
+            ><span id="total-alimentos">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge livros">Livros</span
+            ><span id="total-livros">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge outros">Outros</span
+            ><span id="total-outros">R$ 0,00</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Lista -->
+      <section class="cartao">
+        <h2>Vendas registradas <small id="contador">(0)</small></h2>
+        <p id="vazio" class="vazio">Nenhuma venda registrada ainda.</p>
+        <div class="tabela-area">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th class="direita">Qtd.</th>
+                <th class="direita">Custo un.</th>
+                <th class="direita">Preço un.</th>
+                <th class="direita">Lucro</th>
+                <th><span class="so-leitor">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="listaVendas"></tbody>
+          </table>
+        </div>
+        <button id="limparTudo" type="button" class="botao-limpar">
+          Limpar tudo
+        </button>
+      </section>
+
+      <!-- Bônus -->
+      <section class="cartao bonus">
+        <h2>Bônus <small>(opcional)</small></h2>
+
+        <div class="campo">
+          <label for="meta">Meta mensal de vendas (R$)</label>
+          <input type="number" id="meta" step="0.01" placeholder="Ex.: 1000.00" />
+        </div>
+        <p id="avisoMeta" class="aviso"></p>
+
+        <div class="campo">
+          <label for="filtroCategoria">Mostrar na lista</label>
+          <select id="filtroCategoria">
+            <option value="">Todas as categorias</option>
+            <option value="eletronicos">Eletrônicos</option>
+            <option value="roupas">Roupas</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="livros">Livros</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+
+        <h3 class="titulo-analise">Análise de lucro</h3>
+
+        <div class="campo">
+          <label for="capital">Capital investido no negócio (R$)</label>
+          <input type="number" id="capital" step="0.01" placeholder="Ex.: 500.00" />
+        </div>
+
+        <div class="analise-lucro" id="analiseLucro">
+          <p class="linha-analise">
+            <span>Receita total</span>
+            <strong id="receitaTotal">R$ 0,00</strong>
+          </p>
+          <p class="linha-analise">
+            <span>(−) Custo das mercadorias</span>
+            <strong id="custoTotal">R$ 0,00</strong>
+          </p>
+          <p class="linha-analise linha-destaque">
+            <span>Lucro operacional</span>
+            <strong id="lucroOperacional">R$ 0,00</strong>
+          </p>
+          <p class="linha-analise">
+            <span>(−) Capital investido</span>
+            <strong id="capitalExibido">R$ 0,00</strong>
+          </p>
+          <p class="linha-analise linha-destaque">
+            <span id="rotuloLucro">Lucro final</span>
+            <strong id="lucroFinal">R$ 0,00</strong>
+          </p>
+          <p class="linha-analise">
+            <span>Margem final</span>
+            <strong id="margemFinal">—</strong>
+          </p>
+          <p class="linha-analise">
+            <span>ROI (retorno sobre investimento)</span>
+            <strong id="roiFinal">—</strong>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

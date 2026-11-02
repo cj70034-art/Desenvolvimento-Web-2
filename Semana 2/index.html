@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de Gastos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topo">
+        <h1>Controle de Gastos</h1>
+        <p class="subtitulo">
+          Registre o que você gastou e acompanhe os totais.
+        </p>
+      </header>
+
+      <!-- Formulário de cadastro -->
+      <section class="cartao">
+        <h2>Novo gasto</h2>
+        <form id="formGasto" novalidate>
+          <div class="campo">
+            <label for="descricao">Descrição</label>
+            <input
+              type="text"
+              id="descricao"
+              name="descricao"
+              placeholder="Ex.: Almoço"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="valor">Valor (R$)</label>
+            <input
+              type="number"
+              id="valor"
+              name="valor"
+              step="0.01"
+              placeholder="0.00"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" name="categoria">
+              <option value="">Selecione...</option>
+              <option value="alimentacao">Alimentação</option>
+              <option value="transporte">Transporte</option>
+              <option value="lazer">Lazer</option>
+              <option value="estudos">Estudos</option>
+              <option value="financas">Finanças</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data" />
+          </div>
+
+          <button type="submit" class="botao">Adicionar gasto</button>
+        </form>
+        <p id="mensagem" class="mensagem" role="alert"></p>
+      </section>
+
+      <!-- Resumo: total geral e total por categoria -->
+      <section class="cartao">
+        <h2>Resumo</h2>
+        <p class="total-geral">
+          <span>Total geral</span>
+          <strong id="totalGeral">R$ 0,00</strong>
+        </p>
+        <ul class="totais">
+          <li>
+            <span class="badge alimentacao">Alimentação</span
+            ><span id="total-alimentacao">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge transporte">Transporte</span
+            ><span id="total-transporte">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge lazer">Lazer</span
+            ><span id="total-lazer">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge estudos">Estudos</span
+            ><span id="total-estudos">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge financas">Finanças</span
+            ><span id="total-financas">R$ 0,00</span>
+          </li>
+          <li>
+            <span class="badge outros">Outros</span
+            ><span id="total-outros">R$ 0,00</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Lista de gastos -->
+      <section class="cartao">
+        <h2>Gastos cadastrados <small id="contador">(0)</small></h2>
+        <p id="vazio" class="vazio">Nenhum gasto cadastrado ainda.</p>
+        <div class="tabela-area">
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th class="direita">Valor</th>
+                <th><span class="so-leitor">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="listaGastos"></tbody>
+          </table>
+        </div>
+        <button id="limparTudo" type="button" class="botao-limpar">
+          Limpar tudo
+        </button>
+      </section>
+
+      <!-- BÔNUS (opcional): orçamento mensal e filtro por categoria -->
+      <section class="cartao bonus">
+        <h2>Bônus <small>(opcional)</small></h2>
+
+        <div class="campo">
+          <label for="orcamento">Orçamento mensal (R$)</label>
+          <input
+            type="number"
+            id="orcamento"
+            step="0.01"
+            placeholder="Ex.: 500.00"
+          />
+        </div>
+        <p id="avisoOrcamento" class="aviso"></p>
+
+        <div class="campo">
+          <label for="filtroCategoria">Mostrar na lista</label>
+          <select id="filtroCategoria">
+            <option value="">Todas as categorias</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="transporte">Transporte</option>
+            <option value="lazer">Lazer</option>
+            <option value="estudos">Estudos</option>
+            <option value="financas">Finanças</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
