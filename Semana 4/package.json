@@ -1,0 +1,19 @@
+{
+  "name": "api-jogos",
+  "version": "1.0.0",
+  "description": "API de jogos feita com Express para a disciplina de Desenvolvimento Web 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": ["express", "api", "jogos"],
+  "author": "[Seu Nome]",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
