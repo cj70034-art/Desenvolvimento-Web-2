@@ -1,0 +1,27 @@
+# 🎮 API Jogos
+
+**Disciplina:** Desenvolvimento Web 2 — Prof. Kaio Jonathas
+IFCE Campus Maranguape
+
+---
+
+## Sobre a API
+
+API REST feita com **Node.js** e **Express** que serve dados de jogos.
+Os dados ficam em memória (array no código), sem banco de dados.
+
+**Tema:** Jogos (nome, categoria, ano, plataforma, nota)
+
+---
+
+## Como instalar e rodar
+
+```bash
+# 1) Instalar dependências
+npm install
+
+# 2) Rodar o servidor
+node index.js
+
+# (opcional) com auto-reload durante o desenvolvimento
+npm run dev
